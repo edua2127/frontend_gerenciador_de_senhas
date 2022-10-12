@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import BotaoRemoverSenha from '../componentes/BotaoRemoverSenha'
 import Senha from '../componentes/Senha'
 import './Login.css'
 
@@ -68,15 +69,28 @@ const Login = () => {
 
         {token !== null && ( <button onClick={useReceberItems}>Atualizar Lista</button>)}
        
-        {token !== null  && senhas.map((senha1)=> ( 
-            <div className='lista_senhas'>
-                <h1>{senha1.descricao}</h1>
-                <ul>
-                    <li>Senha: {senha1.password}</li>
-                    <li>URL: {senha1.url}</li>
-                </ul>
-            </div>
-        ) )}
+
+        {token !== null && (
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Descricao</th>
+                    <th>URL</th>
+                    <th>Senha</th>
+                </tr>
+                    {senhas.map((senha1)=> 
+                    (
+                        <tr> 
+                            <td>{senha1.id}</td>
+                            <td>{senha1.descricao}</td>
+                            <td>{senha1.url}</td>
+                            <td>{senha1.password}</td>
+                            <BotaoRemoverSenha idSenha={senha1.id} token={token} useReceberItems={useReceberItems} key={senha1.id}/>
+                        </tr>
+                    ))}
+            </table>
+        )}
+
         {token !== null && <Senha token={token} useReceberItems={useReceberItems}/>}
     </div>
   )

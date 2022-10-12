@@ -15,13 +15,15 @@ button {
     margin-top: 30px;
 }
 
-.lista_senhas {
-    color: rgb(0, 0, 0);
-    text-align: left;
-    border: 2px solid rgb(229, 229, 229);
-    padding: 10px;
-    margin: 5px;
-    background-color: rgb(246, 246, 246);
-    box-shadow: 2px 2px black;
+table, th, td {
+    border:1px solid black;
+}
 
+tr button {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    border: red;
+    padding: 3px;
 }
