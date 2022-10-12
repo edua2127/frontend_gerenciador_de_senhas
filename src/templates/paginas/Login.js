@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './Login.module.css'
+import Senha from '../componentes/Senha'
+import './Login.css'
 
 
 
@@ -9,10 +10,10 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     const [usuario, setUsuario] = useState("")
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState(null)
 
     const [senhas, setSenhas] = useState([])
-
+    
     const useLogin = (e) => {
         e.preventDefault()
         const requesicao = async() => {
@@ -31,6 +32,7 @@ const Login = () => {
         }
 
         requesicao()
+        useReceberItems()
         console.log(token)
     }
     
@@ -49,10 +51,6 @@ const Login = () => {
         fetchData()
     }
 
-    const verificarToken = () => {
-        console.log(token)
-        console.log(senhas)
-    }
   return (
     <div className='pagina_login'>
         <h2>Gerenciador de Senha</h2>
@@ -67,8 +65,19 @@ const Login = () => {
             </label>
             <input type="submit" value={'login'}/>
         </form>
-        <button onClick={useReceberItems}>Receber Lista</button>
-        <button onClick={verificarToken}>visualizar informacoes</button>
+
+        {token !== null && ( <button onClick={useReceberItems}>Atualizar Lista</button>)}
+       
+        {token !== null  && senhas.map((senha1)=> ( 
+            <div className='lista_senhas'>
+                <h1>{senha1.descricao}</h1>
+                <ul>
+                    <li>Senha: {senha1.password}</li>
+                    <li>URL: {senha1.url}</li>
+                </ul>
+            </div>
+        ) )}
+        {token !== null && <Senha token={token} useReceberItems={useReceberItems}/>}
     </div>
   )
 }
