@@ -8,3 +8,9 @@ input, textarea, select {
     display: block;
     margin-top: 10px;
 }
+
+button {
+    display: block;
+    justify-items: flex-start;
+    margin-top: 30px;
+}

@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.module.css'
+
+
+
+
 const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -11,19 +15,18 @@ const Login = () => {
 
     const useLogin = (e) => {
         e.preventDefault()
-        const usuario = {
-            username,
-            password
-        }  
         const requesicao = async() => {
                 const res = await fetch('http://localhost:8080/login', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: JSON.stringify(usuario)
+                    body: new URLSearchParams({
+                        'username': username,
+                        'password': password,
+                    })
                 });
-                const json = res
+                const json = await res.text()
                 setToken(json)
         }
 
@@ -31,6 +34,25 @@ const Login = () => {
         console.log(token)
     }
     
+    const useReceberItems = () => {
+        const fetchData = async() => {
+            const res = await fetch('http://localhost:8080/api/senha', {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization":token
+                },
+            })
+            const json = await res.json()
+            setSenhas(json)
+        }
+        fetchData()
+    }
+
+    const verificarToken = () => {
+        console.log(token)
+        console.log(senhas)
+    }
   return (
     <div className='pagina_login'>
         <h2>Gerenciador de Senha</h2>
@@ -45,6 +67,8 @@ const Login = () => {
             </label>
             <input type="submit" value={'login'}/>
         </form>
+        <button onClick={useReceberItems}>Receber Lista</button>
+        <button onClick={verificarToken}>visualizar informacoes</button>
     </div>
   )
 }
