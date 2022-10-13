@@ -100,7 +100,7 @@ const Login = () => {
 
         {token !== null && <Senha token={token} useReceberItems={useReceberItems}/>}
 
-        {formularioAtivo&& <EditarSenha senhaAtual={senhaAtual} setFormularioAtivo={setFormularioAtivo} useReceberItems={useReceberItems} token={token}/>}
+        {formularioAtivo&& <EditarSenha senhaAtual={senhaAtual} setFormularioAtivo={setFormularioAtivo} token={token}/>}
     </div>
   )
 }

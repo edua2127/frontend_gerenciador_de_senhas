@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const EditarSenha = ({senhaAtual, setFormularioAtivo, token, useReceberItems}) => {
+const EditarSenha = ({senhaAtual, setFormularioAtivo, token}) => {
     const [idSenhaAtual, setIdSenhaAtual] = useState(senhaAtual !== null ? senhaAtual.id : '')
     const [descricaoSenhaAtual, setDescricaoSenhaAtual] = useState(senhaAtual  !== null  ? senhaAtual.descricao : '')
     const [passwordSenhaAtual, setPasswordSenhaAtual] = useState( senhaAtual  !== null  ? senhaAtual.password : '')
@@ -27,11 +27,11 @@ const EditarSenha = ({senhaAtual, setFormularioAtivo, token, useReceberItems}) =
         }
         requesicao()
         setFormularioAtivo(false)
-        useReceberItems()
     }
   return (
     <div>
          <h1>EditarSenha Senha</h1>
+         <p style={{color: 'red'}}>Depois de editar clique em atualizar a lista</p>
          <form onSubmit={useEditarSenha}>
             <label>
                 <span>Descricao</span>

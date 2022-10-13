@@ -28,10 +28,14 @@ const Senha = ({token, useReceberItems}) => {
         }
         requesicao()
         useReceberItems()
+        setUrl("")
+        setDescricao("")
+        setPasswordSenha("")
     }
   return (
     <div>
         <h1>Cadastrar Senha</h1>
+        <p style={{color: 'red'}}>Depois de cadastrar clique em atualizar a lista</p>
          <form onSubmit={useSenha}>
             <label>
                 <span>Descricao</span>
