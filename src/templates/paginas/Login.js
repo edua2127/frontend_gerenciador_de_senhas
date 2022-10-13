@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import BotaoEditarSenha from '../componentes/BotaoEditarSenha'
 import BotaoRemoverSenha from '../componentes/BotaoRemoverSenha'
+import EditarSenha from '../componentes/EditarSenha'
 import Senha from '../componentes/Senha'
 import './Login.css'
 
@@ -14,7 +16,11 @@ const Login = () => {
     const [token, setToken] = useState(null)
 
     const [senhas, setSenhas] = useState([])
-    
+    const [formularioAtivo, setFormularioAtivo] = useState(false)
+
+    const [senhaAtual, setSenhaAtual] = useState(null)
+
+
     const useLogin = (e) => {
         e.preventDefault()
         const requesicao = async() => {
@@ -86,12 +92,15 @@ const Login = () => {
                             <td>{senha1.url}</td>
                             <td>{senha1.password}</td>
                             <BotaoRemoverSenha idSenha={senha1.id} token={token} useReceberItems={useReceberItems} key={senha1.id}/>
+                            <BotaoEditarSenha setSenhaAtual={setSenhaAtual} valorSenhaAtual={senha1} setFormularioAtivo = {setFormularioAtivo}/>
                         </tr>
                     ))}
             </table>
         )}
 
         {token !== null && <Senha token={token} useReceberItems={useReceberItems}/>}
+
+        {formularioAtivo&& <EditarSenha senhaAtual={senhaAtual} setFormularioAtivo={setFormularioAtivo} useReceberItems={useReceberItems} token={token}/>}
     </div>
   )
 }

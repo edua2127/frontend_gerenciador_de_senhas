@@ -45,7 +45,7 @@ const Senha = ({token, useReceberItems}) => {
                 <span>URL</span>
                 <input type={'text'} value={urlSenha} onChange={(event)=> setUrl(event.target.value)}/>
             </label>
-            <input type="submit" value={'login'}/>
+            <input type="submit" value={'Cadastrar'}/>
         </form>
 
     </div>
