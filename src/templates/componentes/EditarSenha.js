@@ -45,7 +45,7 @@ const EditarSenha = ({senhaAtual, setFormularioAtivo, token}) => {
                 <span>URL</span>
                 <input type={'text'} value={urlSenhaAtual} onChange={(event)=> setUrlSenhaAtual(event.target.value)}/>
             </label>
-            <input type="submit" value={'Cadastrar'}/>
+            <input type="submit" value={'Editar Senha'}/>
         </form>
 
 
